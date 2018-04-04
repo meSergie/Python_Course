@@ -1,0 +1,4 @@
+name Legolaz
+health 100
+damage 10
+armor 1.1

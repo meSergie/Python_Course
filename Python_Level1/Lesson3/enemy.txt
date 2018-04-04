@@ -1,0 +1,4 @@
+nameenemy
+health100
+damage10
+armor1.09

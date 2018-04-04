@@ -1,0 +1,109 @@
+# Задача - 1
+# Опишите несколько классов TownCar, SportCar, WorkCar, PoliceCar
+# У каждого класса должны быть следующие аттрибуты:
+# speed, color, name, is_police - Булево значение.
+# А так же несколько методов: go, stop, turn(direction) - которые должны сообщать,
+#  о том что машина поехала, остановилась, повернула(куда)
+
+class TownCar:
+    def __init__(self, speed, color, name, is_police):
+        self.speed = speed
+        self.color = color
+        self.name = name
+        self.is_police = is_police
+    def go(self):
+        print('Машина {} тронулась.'.format(self.name))
+    def stop(self):
+        print('Машина {} остановилась.'.format(self.name))
+    def turn(self, direction):
+        print('Машина {} повернула {}.'.format(self.name, direction))
+        
+class SportCar():
+    def __init__(self, speed, color, name, is_police = False):
+        self.speed = speed
+        self.color = color
+        self.name = name
+        self.is_police = is_police
+    def go(self):
+        print('Машина {} тронулась.'.format(self.name))
+    def stop(self):
+        print('Машина {} остановилась.'.format(self.name))
+    def turn(self, direction):
+        print('Машина {} повернула {}.'.format(self.name, direction))
+
+class WorkCar():
+    def __init__(self, speed, color, name, is_police):
+        self.speed = speed
+        self.color = color
+        self.name = name
+        self.is_police = is_police
+    def go(self):
+        print('Машина {} тронулась.'.format(self.name))
+    def stop(self):
+        print('Машина {} остановилась.'.format(self.name))
+    def turn(self, direction):
+        print('Машина {} повернула {}.'.format(self.name, direction))
+        
+class PoliceCar():
+    def __init__(self, speed, color, name, is_police):
+        self.speed = speed
+        self.color = color
+        self.name = name
+        self.is_police = is_police
+    def go(self):
+        print('Машина {} тронулась.'.format(self.name))
+    def stop(self):
+        print('Машина {} остановилась.'.format(self.name))
+    def turn(self, direction):
+        print('Машина {} повернула {}.'.format(self.name, direction))
+        
+if __name__ == '__main__':
+        
+    bus = TownCar(100, 'green', '1', False)
+    bus.go()
+    bus.stop()
+    bus.turn('направо')
+    
+# Задача - 2
+# Посмотрите на задачу-1 подумайте как выделить общие признаки классов
+# в родительский и остальные просто наследовать от него.
+
+class Car:
+    def __init__(self, speed, color, name):
+        self.speed = speed
+        self.color = color
+        self.name = name
+    def go(self):
+        print('Машина {} тронулась.'.format(self.name))
+    def stop(self):
+        print('Машина {} остановилась.'.format(self.name))
+    def turn(self, direction):
+        print('Машина {} повернула {}.'.format(self.name, direction))
+        
+class TownCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        Car.__init__(self, speed, color, name)
+        self.is_police = is_police
+        
+class SportCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        Car.__init__(self, speed, color, name)
+        self.is_police = is_police
+        
+class WorkCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        Car.__init__(self, speed, color, name)
+        self.is_police = is_police
+        
+class PoliceCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        Car.__init__(self, speed, color, name)
+        self.is_police = is_police
+
+if __name__ == '__main__':
+        
+    bus = TownCar(100, 'green', '1', False)
+    bus.go()
+    bus.stop()
+    bus.turn('направо')
+    print(bus.is_police)

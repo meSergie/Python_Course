@@ -1,0 +1,86 @@
+# Задание - 1
+# Давайте опишем пару сущностей player и enemy через словарь,
+# который будет иметь ключи и значения:
+# name - строка полученная от пользователя,
+# health - 100,
+# damage - 50.
+# Поэксперементируйте с значениями урона и жизней по желанию.
+# Теперь надо создать функцию attack(person1, persoтn2), аргументы можете указать свои,
+# функция в качестве аргумента будет принимать атакующего и атакуемого,
+# функция должна получить параметр damage атакующего и отнять это количество
+# health от атакуемого. Функция должна сама работать с словарями и изменять их значения.
+
+player_name = input('Введите имя игрока:')
+enemy_name = input('Введите имя врага:')
+
+player = {'name': player_name, 'health': 100, 'damage': 10}
+enemy = {'name': enemy_name, 'health': 100, 'damage': 10}
+def attack(attacker, terpila):
+    terpila.update({'health': terpila['health'] - attacker['damage']})
+    return terpila
+attack(player, enemy)
+print(enemy)
+
+# Задание - 2
+# Давайте усложним предыдущее задание, измените сущности, добавив новый параметр - armor = 1.2
+# Теперь надо добавить функцию, которая будет вычислять и возвращать полученный урон по формуле damage / armor
+# Следовательно у вас должно быть 2 функции, одна наносит урон, вторая вычисляет урон по отношению к броне.
+ 
+# Сохраните эти сущности, полностью, каждую в свой файл,
+# в качестве названия для файла использовать name, расширение .txt
+# Напишите функцию, которая будет считывать файл игрока и его врага, получать оттуда данные, и записывать их в словари,
+# после чего происходит запуск игровой сессии, где сущностям поочередно наносится урон,
+# пока у одного из них health не станет меньше или равен 0.
+# После чего на экран должно быть выведено имя победителя, и количество оставшихся единиц здоровья.
+
+import random
+player_name = input('Введите имя игрока:')
+enemy_name = input('Введите имя врага:')
+
+player = {'name': player_name, 'health': 100, 'damage': 10, 'armor': 1.1}
+enemy = {'name': enemy_name, 'health': 100, 'damage': 10, 'armor': 1.09}
+
+with open(player_name + '.txt', 'w') as f:
+    for k,v in player.items():
+        f. write(k + ' ' + str(v) + '\n')
+with open(enemy_name + '.txt', 'w') as f:
+    for k,v in enemy.items():
+        f. write(k + ' ' + str(v) + '\n')
+
+def player_file(file_name):
+    player_data = {}
+    with open(file_name, 'r') as f:
+        for line in f.readlines():
+            key,val = line.split()
+            if key == 'name':
+                player_data[key] = val
+            else:
+                player_data[key] = float(val)
+    return player_data
+
+def reduced_damage(attacker, terpila):
+    rd = round((attacker['damage']+random.randint(-5,5))/terpila['armor'], 3)
+    return rd
+def attack(attacker, terpila):
+    rd = reduced_damage(attacker, terpila)    
+    terpila.update({'health': round(terpila['health'] - rd, 3)})
+    print('{} наносит {} урона, у {} остается {} здоровья'.format(attacker['name'], rd, terpila['name'], terpila['health']))
+    return terpila
+
+player1 = player_file('Legolaz.txt')
+player2 = player_file('e.txt')
+i = 0
+while True:
+    if player1['health'] <= 0 or player2['health'] <= 0:
+        if player1['health'] > player2['health']:
+            print('{} победил, у него осталось {} здоровья'.format(player1['name'], str(player1['health'])))
+            print('{} проиграл, у него осталось {} здоровья'.format(player2['name'], str(player2['health'])))
+        else:
+            print('{} победил, у него осталось {} здоровья'.format(player2['name'], str(player2['health'])))
+            print('{} проиграл, у него осталось {} здоровья'.format(player1['name'], str(player1['health'])))
+        break
+    if i % 2 == 0:
+        attack(player1, player2)
+    else:
+        attack(player2, player1)
+    i += 1

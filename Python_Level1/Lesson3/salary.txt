@@ -1,0 +1,4 @@
+Ivanov - 1000
+Petrov - 2000
+Pomidorov - 5000
+Sidorov - 3000

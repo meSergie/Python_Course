@@ -1,0 +1,35 @@
+# Задание - 1
+# Создайте функцию, принимающую на вход Имя, возраст и город проживания человека
+# Функция должна возвращать строку вида "Василий, 21 год(а), проживает в городе Москва"
+
+def vasya(name, age, city):
+    s = '{},{} год(а), проживает в городе {}'.format(name,age,city)
+    return s
+name = input('Введите имя:')
+age = input('Введите возраст:')
+city = input('Введите город:')
+print(vasya(name, age, city))
+
+# Задание - 2
+# Создайте функцию, принимающую на вход 3 числа, и возвращающую наибольшее из них
+
+def mmax(a,b,c):
+    maks = a
+    if b > a:
+        maks = b
+    if c > maks:
+        maks = c
+    return maks
+print(mmax(5,5,6))
+
+# Задание - 3
+# Создайте функцию, принимающую неограниченное количество строковых аргументов,
+# верните самую длинную строку из полученных аргументов
+def maks_string(*args):
+    maks = len(args[0])
+    for i in args:
+        if len(i) > maks:
+            maks = len(i)
+    return maks
+string_args = input().split()
+print(maks_string(*string_args))
