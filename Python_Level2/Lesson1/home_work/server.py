@@ -1,5 +1,6 @@
+
 import socket
-#import lib
+import lib
 import time
 import argparse
 import sys
@@ -15,11 +16,11 @@ def run_server(port = 7777, addr = None):
 
     while 1:
         sock, addr = server_sock.accept()
-        client_time = sock.recv(1024)
-        print(client_time.decode('ascii'))
-        timestr = str(time.time()) + "\n"
-        sock.send(timestr.encode('ascii'))
-    #    lib.main_loop_for_server(sock)
+        # client_time = sock.recv(1024)
+        # print(client_time.decode('ascii'))
+        # timestr = str(time.time()) + "\n"
+        # sock.send(timestr.encode('ascii'))
+        lib.main_loop_for_server(sock)
         sock.close()
 
 parser = argparse.ArgumentParser()
