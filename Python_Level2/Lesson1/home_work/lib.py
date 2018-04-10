@@ -3,13 +3,13 @@ import time
 
 def main_loop_for_client(sock):
 
-    messege = \
+    message = \
     {
         'action': 'authenticate',
         'time': time.time()
     }
 
-    messege_json = messege.dumps()
-    messege_buf = messege_json.encode()
+    message_json = message.dumps()
+    message_buf = message_json.encode()
 
-    sock.send(messege_buf)
+    sock.send(message_buf)
