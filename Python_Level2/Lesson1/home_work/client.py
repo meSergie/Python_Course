@@ -15,9 +15,9 @@ sock.connect((addr, port))
 timestr = str(time.time()) + "\n"
 out_time = sock.send(timestr.encode('ascii'))
 #lib.main_loop_for_client(sock)
-messege = sock.recv(1024)
-print(messege.decode('ascii'))
-server_time = float(messege.decode('ascii'))
+message = sock.recv(1024)
+print(message.decode('ascii'))
+server_time = float(message.decode('ascii'))
 recv_time = time.time() - server_time
 print('time to recieve =', recv_time)
 sock.close()
