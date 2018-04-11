@@ -5,7 +5,7 @@ import time
 
 addr = sys.argv[1]
 port = int(sys.argv[2])
-print(str(addr), port)
+# print(str(addr), port)
 sock = socket.socket(
         family = socket.AF_INET,
         type = socket.SOCK_STREAM,
