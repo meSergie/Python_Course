@@ -27,6 +27,5 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-p', type = int, nargs = 1)
 parser.add_argument('-a', type = str, nargs = 1)
 args = parser.parse_args()
-print(args.a)
 
 run_server(args.p[0], args.a[0])
